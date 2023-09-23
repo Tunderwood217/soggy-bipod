@@ -11,27 +11,36 @@
 $(function () {
   const calendar = document.getElementById("currentDay");
   const date = new Date();
-console.log(date);
-const todaysDate = date.toLocaleDateString();
-console.log(todaysDate)
-calendar.textContent = todaysDate;
+  console.log(date);
+  const todaysDate = date.toLocaleDateString();
+  console.log(todaysDate);
+  calendar.textContent = todaysDate;
 
-const buttons = document.getElementsByClassName("saveBtn");
-console.log(buttons);
+  const buttons = document.getElementsByClassName("saveBtn");
+  console.log(buttons);
 
-for (let index = 0; index < buttons.length; index++) {
-  const button = buttons[index];
-  button.addEventListener("click", clickSave);
-}
+  for (let index = 0; index < buttons.length; index++) {
+    const button = buttons[index];
+    button.addEventListener("click", clickSave);
+  }
 
-function clickSave(e){
-  const hour = e.target.parentElement.id;
-  const storage = e.target.previousElementSibling.value;
-console.log(hour);
-console.log(storage);
-localStorage.setItem(hour, storage);
-}
+  function clickSave(e) {
+    const hour = e.target.parentElement.id;
+    const storage = e.target.previousElementSibling.value;
+    console.log(hour);
+    console.log(storage);
+    localStorage.setItem(hour, storage);
+  }
 
+  const textAreas = document.querySelectorAll("textarea");
+  console.log(textAreas);
+
+  for (let index = 0; index < textAreas.length; index++) {
+    const textArea = textAreas[index];
+    const hour = textArea.parentElement.id;
+    const storage = localStorage.getItem(hour);
+    if (storage) textArea.textContent = storage
+  }
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
   // local storage. HINT: What does `this` reference in the click listener

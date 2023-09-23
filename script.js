@@ -40,6 +40,15 @@ $(function () {
     const hour = textArea.parentElement.id;
     const storage = localStorage.getItem(hour);
     if (storage) textArea.textContent = storage
+
+    console.log(date.getHours())
+    const hourNumber = parseInt(hour.slice(5))
+
+    const parentClassList = textArea.parentElement.classList
+
+    if (hourNumber===date.getHours()) parentClassList.add("present");
+    else if (hourNumber<date.getHours()) parentClassList.add("past");
+    else parentClassList.add("future");
   }
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
